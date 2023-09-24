@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals/data/model/categories.dart';
-import 'package:meals/presentation/item_info.dart';
+import 'package:meals/presentation/pages/item_info.dart';
 
 class CategoryItemGrid extends StatelessWidget {
   const CategoryItemGrid({super.key, required this.ci});
@@ -76,7 +76,7 @@ class CategoryItemGrid extends StatelessWidget {
                           )),
                     
                     child: Image.asset(
-                      "${ci.image}",
+                      ci.image,
                       width: 200,
                       height: 200,
                       fit: BoxFit.cover,

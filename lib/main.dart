@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meals/data/datasource/categories_data.dart';
 import 'package:meals/presentation/pages/categories.dart';
+import 'package:meals/presentation/widget/categories_container.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,25 +31,18 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme:ColorScheme.highContrastDark(),
+        colorScheme: ColorScheme.highContrastDark(),
         useMaterial3: true,
       ),
-      home:Categories(),
+      home: Categories(
+        title: 'Categories',
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -71,65 +66,48 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    int index = 0;
+
+    List<Widget> body = [
+      GridView.builder(
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemBuilder: (context, i) => CategoriesContainer(
+          category: category[i],
+        ),
+        itemCount: category.length,
+      ),
+      Container(
+        color: Colors.amber,
+        height: 100,
+        width: 100,
+      )
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.brown,
         title: Text("Id= "),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // SizedBox(height: 8,),
-          Container(
-            height: 300,
-            width: 400,
-            child: Image.asset(
-              "",
-              width: 200,
-              height: 300,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Text(
-            "   ID: ",
-            textAlign: TextAlign.start,
-            style: TextStyle(
-                fontSize: 25, fontWeight: FontWeight.w700, color: Colors.brown),
-          ),
-          Text(
-            "   Name: ",
-            textAlign: TextAlign.start,
-            style: TextStyle(
-                fontSize: 25, fontWeight: FontWeight.w700, color: Colors.brown),
-          ),
-          Container(
-            padding: EdgeInsets.all(16),
-            child: Text(
-              "advice",
-              style: TextStyle(fontSize: 22),
-            ),
-          ),
-          Spacer(),
-          Container(
-              child: ElevatedButton(
-                onPressed: () =>(),
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.brown),
-                child: Text(
-                  "adopt",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-              ),
-              width: 410,
-              height: 50,
-              color: const Color.fromARGB(255, 229, 225, 224))
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: const Color.fromARGB(255, 15, 10, 8),
+        selectedIconTheme: IconThemeData(size: 30),
+        selectedFontSize: 20,
+        currentIndex: index,
+        onTap: (value) {
+          setState(() {
+            index = value;
+            print(value);
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.category), label: "Categories"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite), label: "Favorite"),
         ],
+        backgroundColor: Color.fromARGB(255, 42, 17, 8),
       ),
+      body: body.elementAt(index),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/data/model/categories.dart';
 
-List<Category> items = [
+List<Category> category = [
   Category("summer", Color.fromARGB(255, 133, 51, 216), 1),
   Category("Qick&Easy", Color.fromARGB(255, 173, 60, 29), 2),
   Category("Humburger", Color.fromARGB(255, 75, 187, 79), 3),
@@ -12,7 +12,7 @@ List<Category> items = [
   Category("Breakfast", Color.fromARGB(255, 235, 151, 41), 8),
 ];
 
-List<CategoryItems> summeritems = [
+List<CategoryItems> items = [
   CategoryItems("assets/images/salmon.jpeg", "salmon", "15 min", "simple",
       "Luxurious", 1, salmonIng, salmonStep),
   CategoryItems("assets/images/orange.jpeg", "orange mousse", "30 min", "hard",

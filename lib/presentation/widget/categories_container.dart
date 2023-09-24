@@ -16,7 +16,7 @@ class CategoriesContainer extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => CategoryItemPage(
-                          categoryI: category,
+                          category: category,
                         ))),
             child: Container(
               padding: EdgeInsets.all(20),
@@ -33,7 +33,9 @@ class CategoriesContainer extends StatelessWidget {
               child: Text(
                 "${category.title}",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 23, color: const Color.fromARGB(255, 246, 244, 244)),
+                style: TextStyle(
+                    fontSize: 23,
+                    color: const Color.fromARGB(255, 246, 244, 244)),
               ),
               alignment: Alignment.topLeft,
             ),

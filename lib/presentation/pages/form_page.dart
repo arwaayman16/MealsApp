@@ -101,7 +101,7 @@ class _FormPageState extends State<FormPage> {
                     onPressed: () {
                       if (key.currentState!.validate()) {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Categories()));
+                            MaterialPageRoute(builder: (context) => Categories(title: 'Categories',)));
                       }
                     },
                     child: Text(
